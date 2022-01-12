@@ -49,6 +49,12 @@ jobs:
     - name: Run VS Extension tests
       run: vstest.console.exe ${{ github.workspace }}\bin\${{ matrix.configuration }}\MICoreUnitTests.dll ${{ github.workspace }}\bin\${{ matrix.configuration }}\JDbgUnitTests.dll ${{ github.workspace }}\bin\${{ matrix.configuration }}\SSHDebugTests.dll
 
+    - name: 'Upload Debugger Dist'
+      uses: actions/upload-artifact@v2
+      with:
+        name: OpenDebugAD7-${{ matrix.configuration }}-win32
+        path: ${{ github.workspace }}/bin/${{ matrix.configuration }}/vscode
+
   windows_vscode_build:
     runs-on: windows-latest
 
